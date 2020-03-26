@@ -39,7 +39,7 @@ export class TopBooks extends Component{
                             allBooks.push(book1);
                         }
                     }
-                );
+                ).catch(error => console.log(error))
         });
 
         this.setState({
@@ -52,16 +52,11 @@ export class TopBooks extends Component{
 
     render(){
         return(
-                <div>
-                    {
-                        this.state.books.map((item) => (
-                            <BookCard
-                                book={item}
-                            />
-
-                        ))
-                    }
-                </div>
+            <div>
+                {this.state.books.map((item) =>
+                    <BookCard book={item} />
+                )}
+            </div>
         )
     }
 
