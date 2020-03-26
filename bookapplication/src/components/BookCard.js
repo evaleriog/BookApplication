@@ -1,16 +1,23 @@
-import React from 'react';
-// import {Link} from 'react-router-dom';
+import React, {Component} from 'react';
 
-const Card = (props) => (
-    <div>
-        {/*<Link to={`/book/${props.book.id}`}>*/}
-            <img src={`http://covers.openlibrary.org/b/isbn/${props.book.id}-L.jpg`} alt={props.book.title}/>
+export class Card extends Component{
+    render() {
+        let title = this.props.book.title;
+        let author = this.props.book.author;
+        let source = `http://covers.openlibrary.org/b/isbn/${this.props.book.id}-M.jpg`;
+
+        console.log(source);
+
+        return(
             <div>
-                <h3>{props.book.title}</h3>
-                <p>by {props.book.author}</p>
+
+                <div>
+                    <h3>{title}</h3>
+                    <p>by {author}</p>
+                </div>
             </div>
-        {/*</Link>*/}
-    </div>
-);
+        )
+    }
+}
 
 export default Card;
