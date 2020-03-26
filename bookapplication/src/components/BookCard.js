@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 // import {Link} from 'react-router-dom';
 
-const Card = (props) => (
-    <div>
-        {/*<Link to={`/book/${props.book.id}`}>*/}
-            <img src={`http://covers.openlibrary.org/b/isbn/${props.book.id}-L.jpg`} alt={props.book.title}/>
+export class Card extends Component{
+
+    render() {
+        return(
             <div>
-                <h3>{props.book.title}</h3>
-                <p>by {props.book.author}</p>
+                {/*<Link to={`/book/${props.book.id}`}>*/}
+                {/*<img src={`http://covers.openlibrary.org/b/isbn/${this.props.book.id}-M.jpg`} alt={this.props.book.title}/>*/}
+                <div>
+                    <h3>{this.props.book.title}</h3>
+                    <p>by {this.props.book.author}</p>
+                </div>
+                {/*</Link>*/}
             </div>
-        {/*</Link>*/}
-    </div>
-);
+        )
+    }
+}
 
 export default Card;
