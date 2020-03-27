@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import BookCard from "./BookCard";
 
 export class TopBooks extends Component{
 
@@ -51,25 +52,21 @@ export class TopBooks extends Component{
         });
 
     }
-    //<BookCard books={this.state.books}/
+
     render(){
         let booksArray = Array.from(this.state.books);
-        let allBooks = this.state.books && this.state.books.length > 0 ?
-            booksArray.map((item, index)=>{
-                let source = `http://covers.openlibrary.org/b/isbn/${item.id}-M.jpg`;
-                let title = item.title;
-                let author = item.author;
-                return(
-                    <div key={index}>
-                        <img src={source} alt={title} />
-                        <div>
-                            <h3>{title}</h3>
-                            <p>by {author}</p>
-                        </div>
-                    </div>)
-            }):<span>Loading</span>;
 
-        return(<div>{allBooks}</div>)
+        if(this.state.books && this.state.books.length > 0){
+            return(
+                <div>{
+                    booksArray.map((item, index)=>{
+                        return(<BookCard id={item.id} title={item.title} author={item.author} />)
+                    })
+                }</div>
+            )
+        }else{
+            return(<span>Loading</span>)
+        }
 
     }
 
