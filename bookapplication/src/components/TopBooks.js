@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import BookCard from './BookCard';
-
-var allBooks = [];
 
 export class TopBooks extends Component{
 
@@ -26,11 +23,12 @@ export class TopBooks extends Component{
         * "9781250080400", A Nightingale: A novel
         * "9780735224315" Little fires everywhere: a novel
         * */
+        let that = this;
         let isbns = ["0590353403","9781101217238","9780062491831","9780062060624","9780143110439","9781250080400","9780735224315"];
-        //let allBooks = [];
 
         isbns.forEach(function (isbn) {
             let url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`;
+            let books = Array.from(that.state.books);
 
             fetch(url)
                 .then(data => data.json())
@@ -42,23 +40,37 @@ export class TopBooks extends Component{
                                 author: data[book].authors[0].name
                             };
 
-                            allBooks.push(book1);
+                            books.push(book1);
+
+                            that.setState({
+                                books:[...that.state.books, book1],
+                            })
                         }
                     }
                 ).catch(error => console.log(error))
         });
-    }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        this.setState({
-            books: allBooks
-        }, function () {
-            console.log(this.state.books);
-        });
     }
-
+    //<BookCard books={this.state.books}/
     render(){
-        return( <BookCard books={this.state.books}/>)
+        let booksArray = Array.from(this.state.books);
+        let allBooks = this.state.books && this.state.books.length > 0 ?
+            booksArray.map((item, index)=>{
+                let source = `http://covers.openlibrary.org/b/isbn/${item.id}-M.jpg`;
+                let title = item.title;
+                let author = item.author;
+                return(
+                    <div key={index}>
+                        <img src={source} alt={title} />
+                        <div>
+                            <h3>{title}</h3>
+                            <p>by {author}</p>
+                        </div>
+                    </div>)
+            }):<span>Loading</span>;
+
+        return(<div>{allBooks}</div>)
+
     }
 
 }

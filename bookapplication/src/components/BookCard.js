@@ -10,9 +10,9 @@ export class BookCard extends Component{
         return(
             <div>{
                 (this.props.books).map( (item, index) => {
-                    let source = `http://covers.openlibrary.org/b/isbn/${item["id"]}-M.jpg`;
-                    let title = item["item"];
-                    let author = item["author"];
+                    let source = `http://covers.openlibrary.org/b/isbn/${item.id}-M.jpg`;
+                    let title = item.title;
+                    let author = item.author;
 
                     return(
                         <div key={index}>
