@@ -1,23 +1,32 @@
 import React, {Component} from 'react';
 
-export class Card extends Component{
+export class BookCard extends Component{
     render() {
-        let title = this.props.book.title;
-        let author = this.props.book.author;
-        let source = `http://covers.openlibrary.org/b/isbn/${this.props.book.id}-M.jpg`;
+        // let title = this.props.title;
+        // let author = this.props.author;
+        // let source = `http://covers.openlibrary.org/b/isbn/${this.props.id}-M.jpg`;
 
-        console.log(source);
 
         return(
-            <div>
+            <div>{
+                (this.props.books).map( (item, index) => {
+                    let source = `http://covers.openlibrary.org/b/isbn/${item["id"]}-M.jpg`;
+                    let title = item["item"];
+                    let author = item["author"];
 
-                <div>
-                    <h3>{title}</h3>
-                    <p>by {author}</p>
-                </div>
-            </div>
+                    return(
+                        <div key={index}>
+                            <img src={source} alt={title} />
+                            <div>
+                                <h3>{title}</h3>
+                                <p>by {author}</p>
+                            </div>
+                        </div>
+                    )
+                })
+            }</div>
         )
     }
 }
 
-export default Card;
+export default BookCard;

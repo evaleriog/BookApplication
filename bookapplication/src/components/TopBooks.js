@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import BookCard from './BookCard';
 
+var allBooks = [];
+
 export class TopBooks extends Component{
+
+
     constructor(props){
         super(props);
 
         this.state = {
             books: []
-        }
+        };
+
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
@@ -21,7 +27,7 @@ export class TopBooks extends Component{
         * "9780735224315" Little fires everywhere: a novel
         * */
         let isbns = ["0590353403","9781101217238","9780062491831","9780062060624","9780143110439","9781250080400","9780735224315"];
-        let allBooks = [];
+        //let allBooks = [];
 
         isbns.forEach(function (isbn) {
             let url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`;
@@ -41,23 +47,18 @@ export class TopBooks extends Component{
                     }
                 ).catch(error => console.log(error))
         });
+    }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
         this.setState({
             books: allBooks
         }, function () {
             console.log(this.state.books);
         });
-
     }
 
     render(){
-        return(
-            <div>
-                {this.state.books.map((item) =>
-                    <BookCard book={item} />
-                )}
-            </div>
-        )
+        return( <BookCard books={this.state.books}/>)
     }
 
 }
