@@ -58,14 +58,23 @@ export class TopBooks extends Component{
 
         if(this.state.books && this.state.books.length > 0){
             return(
-                <div>{
+                <div>
+                    <h1>Top Books</h1>
+                    {
                     booksArray.map((item, index)=>{
                         return(<BookCard id={item.id} title={item.title} author={item.author} />)
                     })
-                }</div>
+                    }
+                </div>
             )
         }else{
-            return(<span>Loading</span>)
+            return(
+                <div>
+                    <h1>Top Books</h1>
+                    <span>Loading</span>
+                </div>
+
+            )
         }
 
     }
