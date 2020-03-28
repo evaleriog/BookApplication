@@ -58,7 +58,7 @@ export class TopBooks extends Component{
 
         if(this.state.books && this.state.books.length > 0){
             return(
-                <div>
+                <div className="bookList">
                     <h1>Top Books</h1>
                     {
                     booksArray.map((item, index)=>{

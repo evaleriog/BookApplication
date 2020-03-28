@@ -1,0 +1,22 @@
+.bookCard{
+    background-color: white;
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-right: 2em;
+    width: 200px;
+    height: 300px;
+    font-size: 0.8em;
+}
+
+.bookCard img{
+    border: 1px solid black;
+    height: 75%;
+    width: 100%;
+}
+
+.bookCard h3, p{
+    width: 100%;
+    height: 10%;
+    margin: 0;
+}

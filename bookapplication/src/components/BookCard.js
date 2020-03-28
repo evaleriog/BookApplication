@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import './BookCard.css';
+import './BookList.css';
 
 export class BookCard extends Component{
     render() {
@@ -15,7 +17,7 @@ export class BookCard extends Component{
 
         return(
             <div>
-                <div>
+                <div className="bookCard">
                     <img src={source} alt={title} />
                     <div>
                         <h3>{title}</h3>

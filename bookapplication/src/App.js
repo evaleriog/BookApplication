@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import TopBooks from './components/TopBooks';
 import HorrorBooks from "./components/HorrorBooks";
+import FictionBooks from "./components/FictionBooks";
+import NonFictionBooks from "./components/NonFictionBooks";
 
 class App extends Component{
     render(){
@@ -10,6 +12,8 @@ class App extends Component{
                 <h1>Book Application</h1>
                 <TopBooks />
                 <HorrorBooks />
+                <FictionBooks />
+                <NonFictionBooks />
             </div>
 
         )

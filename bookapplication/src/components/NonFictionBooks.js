@@ -1,12 +1,12 @@
 import React, { Component} from 'react';
 import BookCard from "./BookCard";
 
-class HorrorBooks extends Component{
+class NonFictionBooks extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            horrorBooks: []
+            nonfictionBooks: []
         };
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -14,9 +14,9 @@ class HorrorBooks extends Component{
 
     componentDidMount() {
         let that = this;
-        let horrorBooks = Array.from(that.state.horrorBooks);
+        let nonfictionBooks = Array.from(that.state.nonfictionBooks);
 
-        fetch("http://openlibrary.org/subjects/horror.json?limit=10")
+        fetch("http://openlibrary.org/subjects/nonfiction.json?limit=10")
             .then(data => data.json())
             .then(response => {
                 response.works.forEach(function (book) {
@@ -26,10 +26,10 @@ class HorrorBooks extends Component{
                         author: book.authors[0].name
                     };
 
-                    horrorBooks.push(book1);
+                    nonfictionBooks.push(book1);
 
                     that.setState({
-                        horrorBooks: [...that.state.horrorBooks, book1]
+                        nonfictionBooks: [...that.state.nonfictionBooks, book1]
                     })
 
                 });
@@ -38,14 +38,14 @@ class HorrorBooks extends Component{
     }
 
     render() {
-        let allHorrorBooks = Array.from(this.state.horrorBooks);
+        let allNonFictionBooks = Array.from(this.state.nonfictionBooks);
 
-        if(this.state.horrorBooks && this.state.horrorBooks.length > 0){
+        if(this.state.nonfictionBooks && this.state.nonfictionBooks.length > 0){
             return(
                 <div className="bookList">
-                    <h1>Horror Books</h1>
+                    <h1>Non-Fiction Books</h1>
                     {
-                        allHorrorBooks.map(item =>{
+                        allNonFictionBooks.map(item =>{
                             return(<BookCard id={item.id} title={item.title} author={item.author}/>)
                         })
                     }
@@ -54,7 +54,7 @@ class HorrorBooks extends Component{
         }else{
             return(
                 <div>
-                    <h1>Horror Books</h1>
+                    <h1>Non-Fiction Books</h1>
                     <span>Loading</span>
                 </div>
 
@@ -64,4 +64,4 @@ class HorrorBooks extends Component{
     }
 }
 
-export default HorrorBooks;
+export default NonFictionBooks;
