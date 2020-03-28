@@ -1,0 +1,16 @@
+.navigation-bar{
+    background-color: #61dafb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.searchBar{
+
+}
+
+.searchBar input,select, button{
+    height: 100%;
+    border-radius: 0 !important;
+}
