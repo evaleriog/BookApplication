@@ -17,7 +17,7 @@ export class BookCard extends Component{
 
         return(
             <div>
-                <div className="bookCard">
+                <div className="bookCard" key={this.props.id}>
                     <img src={source} alt={title} />
                     <div>
                         <h3>{title}</h3>

@@ -45,8 +45,8 @@ class FictionBooks extends Component{
                 <div className="bookList">
                     <h1>Fiction Books</h1>
                     {
-                        allFictionBooks.map(item =>{
-                            return(<BookCard id={item.id} title={item.title} author={item.author}/>)
+                        allFictionBooks.map((item, index) =>{
+                            return(<BookCard id={item.id} title={item.title} author={item.author} key={index}/>)
                         })
                     }
                 </div>

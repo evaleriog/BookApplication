@@ -62,7 +62,7 @@ export class TopBooks extends Component{
                     <h1>Top Books</h1>
                     {
                     booksArray.map((item, index)=>{
-                        return(<BookCard id={item.id} title={item.title} author={item.author} />)
+                        return(<BookCard id={item.id} title={item.title} author={item.author} key={index}/>)
                     })
                     }
                 </div>
