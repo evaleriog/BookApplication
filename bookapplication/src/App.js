@@ -6,6 +6,7 @@ import FictionBooks from "./components/FictionBooks";
 import NonFictionBooks from "./components/NonFictionBooks";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
+import Loader from "./components/Loader";
 
 class App extends Component{
     constructor(props){
@@ -22,6 +23,7 @@ class App extends Component{
         this.searchFunction = this.searchFunction.bind(this);
         this.handleSelection = this.handleSelection.bind(this);
         this.handleQuery = this.handleQuery.bind(this);
+        this.handleHome = this.handleHome.bind(this);
     }
 
     componentDidMount() {
@@ -34,8 +36,10 @@ class App extends Component{
         let query = that.state.searchQuery;
 
         if(query !== ""){
-            that.setState({search: true});
-
+            that.setState({
+                search: true,
+                searchResults:[]
+            });
 
             let query = that.state.searchQuery;
             query = query.trim();
@@ -43,6 +47,9 @@ class App extends Component{
 
             let type = that.state.searchType;
             let url = "";
+
+            console.log(query);
+            console.log(type);
 
             if(type === "all"){
                 url = `http://openlibrary.org/search.json?q=${query}`;
@@ -67,14 +74,20 @@ class App extends Component{
         this.setState({searchQuery: e.target.value});
     }
 
+    handleHome(e){
+        e.preventDefault();
+
+        this.setState({
+            search:false,
+            searchResult:[]
+        });
+    }
+
     render(){
         let content;
 
-
-
-
         if(this.state.loading){
-            return(<span>Loading</span>)
+            return(<Loader />)
         }else{
             if(this.state.search){
 
@@ -87,10 +100,13 @@ class App extends Component{
                                 key={index}
                                 title={item.title_suggest}
                                 author={item.author_name}
+                                publishDate={item.publish_year}
                             />)
                         })
                     }</React.Fragment>);
                     content = <div>{mySearchs}</div>
+                }else {
+                    content = <Loader/>
                 }
 
             }else{
@@ -106,6 +122,7 @@ class App extends Component{
                     <Header onSelection={this.handleSelection}
                             onQuery={this.handleQuery}
                             onSearch={this.searchFunction}
+                            onHome={this.handleHome}
                     />
                     <div>{content}</div>
                 </div>
