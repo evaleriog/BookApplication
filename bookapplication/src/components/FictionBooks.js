@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import BookCard from "./BookCard";
+import Loader from "./Loader";
 
 class FictionBooks extends Component{
     constructor(props){
@@ -55,7 +56,7 @@ class FictionBooks extends Component{
             return(
                 <div>
                     <h1>Fiction Books</h1>
-                    <span>Loading</span>
+                    <Loader />
                 </div>
 
             )

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import BookCard from "./BookCard";
+import Loader from "./Loader";
 
 export class TopBooks extends Component{
 
@@ -71,7 +72,7 @@ export class TopBooks extends Component{
             return(
                 <div>
                     <h1>Top Books</h1>
-                    <span>Loading</span>
+                    <Loader />
                 </div>
 
             )
