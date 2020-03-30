@@ -9,6 +9,7 @@ import SearchResults from "./components/SearchResults";
 import Loader from "./components/Loader";
 
 class App extends Component{
+
     constructor(props){
         super(props);
 
@@ -26,11 +27,14 @@ class App extends Component{
     }
 
     componentDidMount() {
-        this.setState({loading: false})
+        this.setState({
+            loading: false,
+        })
     }
 
+
     searchFunction(e){
-        e.preventDefault();
+
         let that = this;
         let query = that.state.searchQuery;
 
@@ -39,6 +43,8 @@ class App extends Component{
                 search: true,
             });
         }
+
+        e.preventDefault();
     }
 
     handleSelection(e){
@@ -54,7 +60,6 @@ class App extends Component{
 
         this.setState({
             search:false,
-            searchResult:[]
         });
     }
 
@@ -64,17 +69,14 @@ class App extends Component{
         if(this.state.loading){
             return(<Loader />)
         }else{
+
             if(this.state.search){
                 content = <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
 
             }else{
-                content = <div>
-                    <TopBooks />
-                    <HorrorBooks />
-                    <FictionBooks />
-                    <NonFictionBooks />
-                </div>
+                content = <div><TopBooks /><HorrorBooks /><FictionBooks /><NonFictionBooks /></div>
             }
+
             return(
                 <div>
                     <Header onSelection={this.handleSelection}

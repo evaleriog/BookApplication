@@ -9,7 +9,8 @@ export class TopBooks extends Component{
         super(props);
 
         this.state = {
-            books: []
+            books: [],
+            error: false
         };
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -49,7 +50,10 @@ export class TopBooks extends Component{
                             })
                         }
                     }
-                ).catch(error => console.log(error))
+                ).catch(error => {
+                    console.log(error)
+                    that.setState({error: true});
+                })
         });
 
     }
@@ -57,7 +61,7 @@ export class TopBooks extends Component{
     render(){
         let booksArray = Array.from(this.state.books);
 
-        if(this.state.books && this.state.books.length > 0){
+        if(this.state.books && this.state.books.length > 0 && !this.state.error){
             return(
                 <div className="bookList">
                     <h1>Top Books</h1>
@@ -66,6 +70,13 @@ export class TopBooks extends Component{
                         return(<BookCard id={item.id} title={item.title} author={item.author} key={index}/>)
                     })
                     }
+                </div>
+            )
+        }else if(this.state.error){
+            return(
+                <div>
+                    <h1>Top Books</h1>
+                    <p>There was an error loading...Try again...</p>
                 </div>
             )
         }else{
