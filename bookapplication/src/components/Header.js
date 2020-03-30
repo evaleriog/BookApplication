@@ -8,7 +8,7 @@ class Header extends Component{
 
     render() {
         return(
-            <div>
+            <div className="top">
                 <h1>Book Application</h1>
                 <nav className="navigation-bar">
                     <a href="#" onClick={this.props.onHome}>Home</a>
