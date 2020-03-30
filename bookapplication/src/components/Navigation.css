@@ -1,16 +1,32 @@
 .navigation-bar{
-    background-color: #61dafb;
+    background-color: #2A7C85;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1em;
 }
 
-.searchBar{
+.navigation-bar a{
+    color: white;
+    text-decoration: none;
+}
 
+.navigation-bar a:hover{
+    color: #E15F4A;
 }
 
 .searchBar input,select, button{
     height: 100%;
     border-radius: 0 !important;
+}
+
+.top{
+    background-color: #13273A;
+}
+
+.top h1{
+    padding: 1em 1em 1em 0.5em;
+    color: white;
+    margin: 0 !important;
+    font-family: 'Erica One', cursive;
 }
