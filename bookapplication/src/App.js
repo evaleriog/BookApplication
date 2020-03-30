@@ -16,8 +16,7 @@ class App extends Component{
             searchQuery: "",
             searchType: "all",
             loading: true,
-            search: false,
-            searchResult: []
+            search: false
         };
 
         this.searchFunction = this.searchFunction.bind(this);
@@ -38,31 +37,7 @@ class App extends Component{
         if(query !== ""){
             that.setState({
                 search: true,
-                searchResults:[]
             });
-
-            let query = that.state.searchQuery;
-            query = query.trim();
-            query = query.replace(" ", "+");
-
-            let type = that.state.searchType;
-            let url = "";
-
-            console.log(query);
-            console.log(type);
-
-            if(type === "all"){
-                url = `http://openlibrary.org/search.json?q=${query}`;
-            }else if(type === "title"){
-                url = `http://openlibrary.org/search.json?title=${query}`;
-            }else if(type === "author"){
-                url = `http://openlibrary.org/search.json?author=${query}`;
-            }
-
-            fetch(url).then(respond => respond.json())
-                .then(data => {
-                    that.setState({searchResult: [...that.state.searchResult, data]})
-                }).catch(error => console.log(error));
         }
     }
 
@@ -90,24 +65,7 @@ class App extends Component{
             return(<Loader />)
         }else{
             if(this.state.search){
-
-                let searchResults = Array.from(this.state.searchResult);
-
-                if(searchResults && searchResults.length > 0){
-                    let mySearchs = (<React.Fragment>{
-                        searchResults[0].docs.map((item, index) => {
-                            return(<SearchResults
-                                key={index}
-                                title={item.title_suggest}
-                                author={item.author_name}
-                                publishDate={item.publish_year}
-                            />)
-                        })
-                    }</React.Fragment>);
-                    content = <div>{mySearchs}</div>
-                }else {
-                    content = <Loader/>
-                }
+                content = <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
 
             }else{
                 content = <div>
