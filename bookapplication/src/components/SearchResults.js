@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Results.css';
 import Loader from "./Loader";
+import { withRouter} from 'react-router-dom';
 
 class SearchResults extends Component{
     constructor(props) {
@@ -90,4 +91,4 @@ class SearchResults extends Component{
     }
 }
 
-export default SearchResults;
+export default withRouter(SearchResults);
