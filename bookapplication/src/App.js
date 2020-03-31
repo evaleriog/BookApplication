@@ -7,7 +7,8 @@ import NonFictionBooks from "./components/NonFictionBooks";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import Loader from "./components/Loader";
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+
 class App extends Component{
 
     constructor(props){
@@ -43,8 +44,10 @@ class App extends Component{
                 search: true,
             });
         }
-
+        that.context.history.push("/search");
         e.preventDefault();
+
+
     }
 
     handleSelection(e){
@@ -70,11 +73,11 @@ class App extends Component{
             return(<Loader />)
         }else{
 
-            if(this.state.search){
-                // content = <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
-                this.props.history.push("/search");
-            }
-            //else{
+            // if(this.state.search){
+            //     content = <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
+            //
+            // }
+            // else{
             //     content = <div><TopBooks /><HorrorBooks /><FictionBooks /><NonFictionBooks /></div>
             // }
 
@@ -106,7 +109,7 @@ class App extends Component{
                         }}
                         />
                     </Switch>
-                    {/*<div>{content}</div>*/}
+                    <div>{content}</div>
                 </Router>
             )
         }
