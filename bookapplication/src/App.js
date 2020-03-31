@@ -7,7 +7,7 @@ import NonFictionBooks from "./components/NonFictionBooks";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import Loader from "./components/Loader";
-
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 class App extends Component{
 
     constructor(props){
@@ -71,21 +71,43 @@ class App extends Component{
         }else{
 
             if(this.state.search){
-                content = <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
-
-            }else{
-                content = <div><TopBooks /><HorrorBooks /><FictionBooks /><NonFictionBooks /></div>
+                // content = <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
+                this.props.history.push("/search");
             }
+            //else{
+            //     content = <div><TopBooks /><HorrorBooks /><FictionBooks /><NonFictionBooks /></div>
+            // }
 
             return(
-                <div>
+                <Router>
                     <Header onSelection={this.handleSelection}
                             onQuery={this.handleQuery}
                             onSearch={this.searchFunction}
                             onHome={this.handleHome}
                     />
-                    <div>{content}</div>
-                </div>
+
+                    <Switch>
+                        <Route exact path="/" render={() =>{
+                            return(
+                                <div><TopBooks /><HorrorBooks /><FictionBooks /><NonFictionBooks /></div>
+                            )
+                        }}
+                        />
+                        <Route exact path="/search" render={() =>{
+                            return(
+                                    <SearchResults query={this.state.searchQuery} type={this.state.searchType}/>
+                                )
+                        }}
+                        />
+                        <Route exact path="/book/:id" render={() =>{
+                            return(
+                                <div></div>
+                            )
+                        }}
+                        />
+                    </Switch>
+                    {/*<div>{content}</div>*/}
+                </Router>
             )
         }
 

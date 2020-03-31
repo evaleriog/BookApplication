@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 
 class Header extends Component{
@@ -11,7 +12,8 @@ class Header extends Component{
             <div className="top">
                 <h1>Book Application</h1>
                 <nav className="navigation-bar">
-                    <a href="#" onClick={this.props.onHome}>Home</a>
+                    <Link to="/">Home</Link>
+                    {/*<a href="#" onClick={this.props.onHome}>Home</a>*/}
                     <form className="searchBar">
                         <input type="text" name="query" placeholder="Search" onChange={this.props.onQuery}/>
                         <select name="search-type" onChange={this.props.onSelection}>
